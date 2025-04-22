@@ -5,12 +5,24 @@ import { getMeal } from '@/lib/meals'
 import classes from './page.module.css'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+
+export async function generateMetaData({params}){
+    const meal = getMeal(params.mealSlug)
+
+    if(!meal){
+        notFound();
+       }
+       
+  return {
+    title: meal.title,
+    description: meal.summary
+  }
+}
+
 export default function MealDetailsPage({params}){ //params here will have the value of the address
     //passed in the bar whereas the slug will have the key to that value
    const meal =  getMeal(params.mealSlug)
-   if(!meal){
-    notFound();
-   }
+  
    meal.instructions = meal.instructions.replace(/\n/g, '<br/>')
     return <>
     <header className={classes.header}>

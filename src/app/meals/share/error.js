@@ -1,7 +1,7 @@
 'use client'
 export default function Error({error}){
     return <main className="error">
-        <h1>An error occurred.</h1>
-        <p>Failed to fetch meal data, please try again later.</p>
+        <h1>{error}</h1>
+        <p>Failed to create meal.</p>
     </main>
 }
